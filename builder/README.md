@@ -1,46 +1,44 @@
 ---
 layout: pattern
-title: Builder
-folder: builder
+设计模式名: 建造者模式
+文件名: builder
 permalink: /patterns/builder/
-categories: Creational
+类型: 创建型模式
 tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
 ---
 
-## Intent
-Separate the construction of a complex object from its
-representation so that the same construction process can create different
-representations.
+## 目的
+将复杂对象的构建与它的表示分离，使得同样的构建可以创建不同的表示
 
-## Explanation
+## 举例说明
 
-Real world example
+真实的例子
 
-> Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
+>想象一下角色扮演游戏的角色生成器， 最简单的选择是让电脑为你创造角色。 但是，如果你想选择职业，性别，头发颜色等字符细节角色生成会一步一步的构造，直到角色全部构造完成
 
-In plain words
+简单的描述
 
-> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+> 允许您创建不同风格的对象，同时避免构造器污染。 当可能有几种风格的对象时很有用。 或者当创建对象时涉及很多步骤。
 
 Wikipedia says
 
-> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
+> 构建器模式是一种对象创建软件设计模式，旨在寻找伸缩构造器反模式的解决方案
 
-Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+话虽如此，让我补充一点关于伸缩构造函数反模式的内容。 在某一点或其他我们都看到了像下面这样的构造函数:
 
 ```
 public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 }
 ```
 
-As you can see the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+正如您所看到的，构造函数参数的数量可能会很快失去控制，并且可能很难理解参数的排列方式。 此外，如果您希望在未来添加更多选项，此参数列表可能会持续增长。 这被称为伸缩式构造函数反模式。
 
-**Programmatic Example**
+**代码示例**
 
-The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create
+理智的选择是使用构造者模式， 首先，我们有我们想要创造的英雄
 
 ```
 public final class Hero {
@@ -62,7 +60,7 @@ public final class Hero {
 }
 ```
 
-And then we have the builder
+然后再创建一个builder
 
 ```
   public static class Builder {
@@ -107,19 +105,19 @@ And then we have the builder
   }
 ```
 
-And then it can be used as:
+按照下面方式调用:
 
 ```
 Hero mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 
-## Applicability
-Use the Builder pattern when
+## 使用范围
+在使用创建者模式时
 
-* the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
-* the construction process must allow different representations for the object that's constructed
+* 用于创建复杂对象的算法应该独立于构成对象的部件以及它们的组装方式
+* 构造过程必须允许对构建的对象进行不同的表示
 
-## Real world examples
+## 实际使用的例子
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-) as well as similar buffers such as FloatBuffer, IntBuffer and so on.
@@ -127,7 +125,7 @@ Use the Builder pattern when
 * All implementations of [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
 
-## Credits
+## 参考资料
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
 * [Effective Java (2nd Edition)](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
