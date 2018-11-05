@@ -10,21 +10,19 @@ tags:
  - Gang Of Four
 ---
 
-## Intent
-Represent an operation to be performed on the elements of an object
-structure. Visitor lets you define a new operation without changing the classes
-of the elements on which it operates.
+## 目的
+表示一个作用于某个对象结构中的各元素操作。它是你可以在不改变各元素的类的前提下定义作用于这些元素的新操作
 
 ![alt text](./etc/visitor_1.png "Visitor")
 
-## Applicability
+## 适用性
 Use the Visitor pattern when
 
 * an object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
 * many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
 * the classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
 
-## Real world examples
+## Java中实例
 
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 * [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html) and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
